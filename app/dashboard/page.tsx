@@ -3,9 +3,14 @@ import Sidebar from "@/components/sidebar";
 import { getCurrentUser } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { TrendingUp } from "lucide-react";
+import { redirect } from "next/navigation";
 
 export default async function DashboardPage() {
   const user = await getCurrentUser();
+  if(!user)
+  {
+    redirect("/sign-in");
+  }
   const userId = user.id;
 
   const [totalProducts, lowStock, allProducts] = await Promise.all([

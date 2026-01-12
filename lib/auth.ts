@@ -8,3 +8,7 @@ export async function getCurrentUser() {
   }
   return user;
 }
+
+export async function checkSigninUser() {
+  return await stackServerApp.getUser();
+}
